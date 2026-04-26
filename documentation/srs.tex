@@ -1,0 +1,186 @@
+% =============================================================================
+% SYSTEM REQUIREMENTS SPECIFICATION
+% =============================================================================
+\documentclass[12pt, a4paper]{article}
+
+% --- Packages ---
+\usepackage[margin=1in]{geometry}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{parskip}
+\usepackage{tabularx}
+
+% --- Hyperlink styling ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!60!black,
+    urlcolor=blue!60!black,
+    citecolor=blue!60!black,
+    pdftitle={System Requirements Specification},
+    pdfauthor={Sean Carson},
+}
+
+% --- Header / Footer ---
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small System Requirements Specification}
+\rhead{\small \leftmark}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% --- Section formatting ---
+\titleformat{\section}{\large\bfseries}{}{0em}{\thesection\quad}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{\thesubsection\quad}
+
+% --- Requirement box command ---
+% Usage: \requirement{ID}{Title}{Statement}{Rationale}{Priority}{Source}
+\newcommand{\requirement}[6]{%
+  \vspace{0.5em}
+  \noindent
+  \begin{tabular}{|p{0.13\linewidth}|p{0.82\linewidth}|}
+    \hline
+    \textbf{ID}          & \texttt{#1} \\
+    \textbf{Title}       & #2 \\
+    \textbf{Statement}   & #3 \\
+    \textbf{Rationale}   & #4 \\
+    \textbf{Priority}    & #5 \\
+    \textbf{Source}      & #6 \\
+    \hline
+  \end{tabular}
+  \vspace{0.5em}
+}
+
+
+% =============================================================================
+\begin{document}
+% =============================================================================
+
+% --- Title Page ---
+\begin{titlepage}
+  \centering
+  \vspace*{2cm}
+  {\LARGE\bfseries System Requirements Specification\par}
+  \vspace{0.5cm}
+  {\large\itshape <Project / System Name>\par}
+  \vspace{2cm}
+
+  \begin{tabular}{ll}
+    \textbf{Document Number:} & SRS-001 \\[4pt]
+    \textbf{Version:}         & 1.0 \\[4pt]
+    \textbf{Status:}          & Draft \\[4pt]
+    \textbf{Date:}            & April 24, 2026 \\[4pt]
+    \textbf{Prepared by:}     & Sean Carson \\[4pt]
+    \textbf{Organization:}    & <Organization> \\
+  \end{tabular}
+
+  \vfill
+  \noindent\rule{\linewidth}{0.4pt}
+  {\small\textit{This document contains proprietary information. Distribution is
+  subject to the approval of <Organization>.}}
+\end{titlepage}
+
+% --- Revision History ---
+\newpage
+\section*{Revision History}
+\begin{tabularx}{\linewidth}{|c|c|X|l|}
+  \hline
+  \textbf{Version} & \textbf{Date} & \textbf{Description} & \textbf{Author} \\
+  \hline
+  1.0 & April 24, 2026 & Initial release & Sean Carson \\
+  \hline
+\end{tabularx}
+
+% =============================================================================
+\newpage
+\section{Introduction}
+% =============================================================================
+
+\subsection{Purpose}
+This document defines the system requirements for \textit{<System Name>}. It
+establishes the functional requirements that the system shall satisfy, and
+provides the basis for design, verification, and validation activities.
+
+\subsection{Scope}
+<Briefly describe what the system does and what is in / out of scope.>
+
+\subsection{Definitions, Acronyms, and Abbreviations}
+\begin{tabular}{ll}
+  \toprule
+  \textbf{Term} & \textbf{Definition} \\
+  \midrule
+  SRS   & System Requirements Specification \\
+  TBD   & To Be Determined \\
+  TBC   & To Be Confirmed \\
+  FOV   & Field of View \\
+  GUI   & Graphical User Interface \\
+  \bottomrule
+\end{tabular}
+
+\subsection{References}
+\begin{enumerate}[label={[\arabic*]}]
+  \item <Reference 1 --- standard, specification, or document>
+  \item <Reference 2>
+\end{enumerate}
+
+
+% =============================================================================
+\newpage
+\section{Functional Requirements}
+\label{sec:func}
+% =============================================================================
+
+\subsection{RADAR Sensing}
+
+\requirement
+  {FR-001}
+  {RADAR Detection Range}
+  {The RADAR \textbf{shall} have a maximum detection range of $10\ \text{m}$.}
+  {Defines the operational sensing envelope required for target detection within the intended deployment environment.}
+  {High}
+  {Sean Carson}
+
+\requirement
+  {FR-002}
+  {RADAR Range Resolution}
+  {The RADAR \textbf{shall} achieve a range resolution of $0.5\ \text{m}$.}
+  {Sufficient range resolution is required to distinguish between closely spaced targets along the radial axis.}
+  {High}
+  {Sean Carson}
+
+\requirement
+  {FR-003}
+  {RADAR Angular Resolution}
+  {The RADAR \textbf{shall} achieve an angular resolution of $0.02499\ \text{rad}$ ($\approx 1.43^{\circ}$).}
+  {Angular resolution determines the ability to discriminate between targets at similar ranges but different bearings.}
+  {High}
+  {Sean Carson}
+
+\requirement
+  {FR-004}
+  {RADAR Field of View}
+  {The RADAR \textbf{shall} provide a field of view of $\frac{2\pi}{3}\ \text{rad}$ ($120^{\circ}$).}
+  {A $120^{\circ}$ FOV is required to cover the designated surveillance sector without mechanical scanning.}
+  {High}
+  {Sean Carson}
+
+\subsection{Data Output and Display}
+
+\requirement
+  {FR-005}
+  {Live GUI Display}
+  {The RADAR \textbf{shall} output all collected data to a live graphical user interface (GUI) display in real time.}
+  {Operators require a continuous, real-time visual representation of RADAR returns to monitor the environment and respond to detections promptly.}
+  {High}
+  {Sean Carson}
+
+% =============================================================================
+\end{document}
+% =============================================================================
